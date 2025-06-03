@@ -27,13 +27,13 @@ jobs:
 
       #1.安装项目依赖
       #2.构建项目
-      - name: Deploy
+      - name: Deploy 🔧
         run: |
           pnpm install --no-frozen-lockfile
           pnpm run build
 
       #github Actions部署项目
-      - name: Deploy
+      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist #指定要部署的文件夹

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && echo > dist/.nojekyll",
     "preview": "vite preview && start chrome",
     "prepare": "husky",
     "typecheck": "tsc --noEmit && vue-tsc --noEmit --skipLibCheck",
@@ -76,6 +76,7 @@
     "cssnano": "^7.0.6",
     "eslint": "^9.27.0",
     "eslint-plugin-vue": "^10.1.0",
+    "gh-pages": "^6.3.0",
     "globals": "^16.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.0",
