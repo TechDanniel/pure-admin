@@ -78,6 +78,7 @@ function formaTwoStageRoutes(routeList: RouteRecordRaw[]) {
       })
     } else {
       //全部拍平
+      v.path = v.path.startsWith('/') ? v.path.slice(1) : v.path
       newRouteList[0]?.children.push({ ...v })
     }
   })

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { App } from 'vue'
+import { useSystemInfo } from '@/store/modules/systemInfo'
 
 let config: object = {}
 const { VITE_PUBLIC_PATH } = import.meta.env
@@ -32,18 +33,18 @@ const getConfig = (key?: string): PlatformConfigs => {
 
 /**获取项目动态全局配置 */
 const getPlatformConfig = async (app: App): Promise<any> => {
-  app.config.globalProperties.$config = getConfig()
+  useSystemInfo().setConfig(getConfig())
   return axios({
     method: 'get',
     url: `${VITE_PUBLIC_PATH}platform-config.json`
   }).then(({ data: config }) => {
     // 使用解构赋值从响应对象中提取 data 属性，并将其重命名为 config。
-    let $config = app.config.globalProperties.$config
+    let $config = useSystemInfo().getConfig()
     //自动注入系统配置
     if (app && $config && typeof config === 'object') {
       $config = Object.assign($config, config)
       //设置全局变量$config
-      app.config.globalProperties.$config = $config
+      useSystemInfo().setConfig($config)
       //设置全局配置给getConfig使用
       setConfig($config)
       return $config

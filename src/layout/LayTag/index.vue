@@ -324,7 +324,6 @@ function dynamicRouteTag(value: string): void {
     return item.path === value
   })
 
-  console.log('hasValue添加标签', hasValue)
   function concatPath(arr: object[], value: string) {
     if (!hasValue) {
       arr.forEach((arrItem: any) => {

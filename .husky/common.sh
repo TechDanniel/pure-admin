@@ -1,6 +1,8 @@
 #!/bin/sh
-#解决windows上的Git Bash环境的兼容性补丁
-#winpty 会模拟 Linux 终端环境
+#定义command_exists函数，查找系统中是否存在指定的命令
+#command -v "$1"查找命令是否存在系统的PATH路径中，存在则返回1否则0；$1是函数的第一个参数（命令名winpty/ls这种）
+#>/dev/null 2>&1，丢弃所有输出
+#>> 是输出重定向符号,/dev/null是系统黑洞，丢弃所有输出，
 command_exists () {
   command -v "$1" >/dev/null 2>&1
 }

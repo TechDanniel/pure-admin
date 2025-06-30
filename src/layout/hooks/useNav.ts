@@ -1,7 +1,6 @@
 import { getConfig } from '@/config'
 import { computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
-import { app } from '@/main'
 import { useUserStore } from '@/store/modules/user'
 import type { CSSProperties } from 'vue'
 import { isEmpty } from 'element-plus/es/utils/types.mjs'
@@ -10,6 +9,7 @@ import { usePermissionStore } from '@/store/modules/permission'
 import { emitter } from '@/utils/mitt'
 import { storeToRefs } from 'pinia'
 import { remainingPaths } from '@/router'
+import { useSystemInfo } from '@/store/modules/systemInfo'
 
 export function useNav() {
   //获取store里存储的侧边导航栏状态
@@ -25,7 +25,7 @@ export function useNav() {
     return AppStore.getSidebarStatus
   })
 
-  const { $storage } = app.config.globalProperties
+  const { $storage } = useSystemInfo()
   const layout = computed(() => {
     return $storage?.layout?.layout
   })

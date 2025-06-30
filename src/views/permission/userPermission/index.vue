@@ -148,6 +148,7 @@ onMounted(async () => {
   onSearch()
   // 归属部门
   const { data } = await getDeptList()
+  console.log("部门信息",data)
   higherDeptOptions.value = handleTree(data)
 })
 </script>

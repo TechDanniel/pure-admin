@@ -3,7 +3,7 @@ import { responsiveStorageNameSpace } from '@/config'
 import { App } from 'vue'
 import ReactiveStorage from './ReactiveStorage'
 import { routerArrays } from '@/layout/type'
-
+import { useSystemInfo } from '@/store/modules/systemInfo'
 //将响应式信息注入为全局变量$Storage,没有就是默认值
 export const injectResponsiveStorage = (app: App, config: PlatformConfigs) => {
   const nameSpace = responsiveStorageNameSpace()
@@ -35,5 +35,5 @@ export const injectResponsiveStorage = (app: App, config: PlatformConfigs) => {
   )
   ReactiveStorage.setItem(`${nameSpace}configure`, configObj.configure)
   ReactiveStorage.setItem(`${nameSpace}layout`, configObj.layout)
-  app.config.globalProperties.$storage = configObj
+  useSystemInfo().setStorage(configObj)
 }

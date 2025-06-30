@@ -134,8 +134,6 @@ async function handleDynamicRoutesAndTags(to, from, next) {
 }
 
 router.beforeEach(async (to: ToRouteType, from, next) => {
-  performance.mark('route-switch-start')
-  console.log('跳转', from, to)
   if (to.meta?.keepAlive) {
     handleAliveRoute(to, 'add')
     // 页面整体刷新
@@ -193,15 +191,6 @@ router.beforeEach(async (to: ToRouteType, from, next) => {
 
 router.afterEach(() => {
   Nprogress.done()
-  performance.mark('route-switch-end')
-  //创建一个名为 'route-switch-duration' 的性能测量条目。
-  performance.measure('route-switch-duration', 'route-switch-start', 'route-switch-end')
-  //该数组包含了所有名称为 'route-switch-duration' 的性能条目
-  const entry = performance.getEntriesByName('route-switch-duration')[0]
-  // entry.duration表示从 'route-switch-start' 标记到 'route-switch-end' 标记之间的时间差
-  console.log(`Route switching took ${entry.duration} milliseconds.`)
-  performance.clearMarks()
-  performance.clearMeasures()
 })
 
 export default router

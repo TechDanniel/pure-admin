@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import { computed, defineComponent, Transition, h } from 'vue'
-import { app } from '@/main'
+import { useSystemInfo } from '@/store/modules/systemInfo'
 import Frame from '@/layout/frame/index.vue'
 import BackTopIcon from '@/assets/svg/back_top.svg?component'
 import { usePermissionStore } from '@/store/modules/permission'
@@ -109,7 +109,7 @@ const transitionMain = defineComponent({
   }
 })
 
-const { $storage, $config } = app.config.globalProperties
+const { $storage, $config } = useSystemInfo()
 const stretch = computed(() => {
   return $storage?.configure.stretch
 })

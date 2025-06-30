@@ -28,10 +28,16 @@ export default defineConfig({
   server:{
     port:8848,
     host:'0.0.0.0',
-    proxy:{},
     //预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布
     warmup:{
       clientFiles: ["./index.html", "./src/{views,components}/*"]
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000', // 代理目标地址
+        changeOrigin: true, // 是否改变源
+        rewrite: (path)=>path.replace(/^\/api/,'') // 重写路径
+      }
     }
   },
   build: {
